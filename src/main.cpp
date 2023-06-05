@@ -2,6 +2,7 @@
 #include <ArduinoLog.h>
 #include "heapstats.h"
 
+CHeapStats *myheapstats;
 
 void setup()
 {
@@ -9,9 +10,9 @@ void setup()
 
     Log.begin(LOG_LEVEL_VERBOSE, &Serial);
 
-    CHeapStats::GetInstance();
+    myheapstats = CHeapStats::GetInstance();
 }
 
 void loop() {
-        CHeapStats::GetInstance()->tick();
+    myheapstats->tick();
 }
