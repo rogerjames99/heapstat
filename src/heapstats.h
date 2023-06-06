@@ -3,8 +3,6 @@
 #ifndef HEAPSTATS_H
 #define HEAPSTATS_H
 
-#include <arduino-timer.h>
-
 /**
  * @brief Declaration of CHeapStats class.
 */
@@ -17,17 +15,11 @@ protected:
     
     static CHeapStats* singleton;
     
-    Timer<1> timer1; //This version gives a compiler warning.
-
-    static Timer<1> timer; // Force the storage class to static - this supresses the
-                            // compiler warning but still leaves the symbol undefined
-
-
 public:
     CHeapStats(CHeapStats &other) = delete;
     void operator=(const CHeapStats &) = delete;
     static CHeapStats *GetInstance();
-    void tick(void) { timer.tick(); }
+    void tick(void); 
 };
 #endif // HEAPSTATS_H
 

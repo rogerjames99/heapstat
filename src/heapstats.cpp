@@ -1,11 +1,20 @@
 /** \file heapstats.cpp
 */
 #include <ArduinoLog.h>
+#include <arduino-timer.h>
 #include <malloc.h>
 #include "heapstats.h"
 
+static Timer<1> timer; // Cannot have a template as a class member
+
 CHeapStats::CHeapStats()
 {
+    ::timer.every(10000, CHeapStats::printHeapStats);
+}
+
+void CHeapStats::tick(void)
+{
+  ::timer.tick();
 }
 
 CHeapStats* CHeapStats::singleton = nullptr;
